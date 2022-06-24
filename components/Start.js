@@ -8,9 +8,6 @@ function Start() {
             <div className='max-w-3xl w-full '>
                 <div className='sticky w-full h-20  flex items-center'>
                     <p className='ml-4 text-gray-600'>Start a new document</p>
-                    <IconButton className='ml-auto' color="default">
-                        <MoreVert />
-                    </IconButton>
                 </div>
 
                 <div className='w-full gap-4 grid grid-flow-row  xl:grid-cols-3 md:grid-cols-2 grid-cols-1 py-8'>
