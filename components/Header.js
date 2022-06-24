@@ -1,8 +1,18 @@
 import { Apps, MenuSharp, NineK, Search } from '@mui/icons-material'
-import { Avatar, IconButton } from '@mui/material'
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import React from 'react'
 
 function Header() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+
     return (
         <header className='flex sticky shadow-md h-16 md:h-20 items-center '>
             <IconButton className='ml-4' color="default">
@@ -17,7 +27,22 @@ function Header() {
             <IconButton className='ml-2 md:ml-8' color="default">
                 <Apps />
             </IconButton>
-            <Avatar className='ml-2 md:ml-8 mr-4' src='https://avatars.githubusercontent.com/u/83910193?v=4' />
+            
+            <img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src='https://avatars.githubusercontent.com/u/83910193?v=4' />
+            
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                'aria-labelledby': 'basic-button',
+                }}
+            >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
         </header>
     )
 }
