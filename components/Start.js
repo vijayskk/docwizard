@@ -14,10 +14,10 @@ function Start() {
                 </div>
 
                 <div className='w-full gap-4 grid grid-flow-row  xl:grid-cols-3 md:grid-cols-2 grid-cols-1 py-8'>
-                    <IconButton className='bg-white flex-col w-48 h-64 rounded-xl border border-gray-300 flex items-center justify-center mx-auto'>
+                    <div className='bg-white flex-col w-48 h-64 rounded-xl border border-gray-300 flex items-center justify-center mx-auto'>
                         <Add className='text-gray-600 h-20 w-20' color='primary' />
                         <p className='mt-4 text-md font-thin'>Blank</p>
-                    </IconButton>
+                    </div>
 
 
 
