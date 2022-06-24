@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Files from '../components/Files'
 import Header from '../components/Header'
+import Start from '../components/Start'
 
 export default function Home() {
   return (
@@ -19,8 +21,10 @@ export default function Home() {
         />
       </Head>
 
-      
+
       <Header />
+      <Start />
+      <Files />
     </div>
   )
 }

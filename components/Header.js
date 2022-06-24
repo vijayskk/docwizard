@@ -4,7 +4,7 @@ import React from 'react'
 
 function Header() {
     return (
-        <div className='flex sticky shadow-md h-16 md:h-20 items-center '>
+        <header className='flex sticky shadow-md h-16 md:h-20 items-center '>
             <IconButton className='ml-4' color="default">
                 <MenuSharp />
             </IconButton>
@@ -18,7 +18,7 @@ function Header() {
                 <Apps />
             </IconButton>
             <Avatar className='ml-2 md:ml-8 mr-4' src='https://avatars.githubusercontent.com/u/83910193?v=4' />
-        </div>
+        </header>
     )
 }
 
