@@ -17,9 +17,9 @@ function Files() {
             </div>
 
             {
-                files.map(()=>{
+                files.map((o,i)=>{
                     return(
-                        <div className='w-full h-20 border-b border-gray-200 flex items-center'>
+                        <div key={i} className='w-full h-20 border-b border-gray-200 flex items-center'>
                             <IconButton className='ml-4' color="primary">
                                 <Folder />
                             </IconButton>
