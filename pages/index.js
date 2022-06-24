@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Files from '../components/Files'
 import Header from '../components/Header'
 import Start from '../components/Start'
-
+import {db} from '../firebase'
 export default function Home() {
 
   return (
