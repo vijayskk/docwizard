@@ -26,12 +26,12 @@ const style = {
 
 export default function Home() {
   const [user] = useAuthState(auth)
-  if(!user) return <Login />
-
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  if(!user) return <Login />
+
+
 
   return (
     <div >
