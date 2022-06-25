@@ -6,10 +6,32 @@ import Start from '../components/Start'
 import {auth, db} from '../firebase'
 import Login from '../components/Login'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { useState } from 'react'
+import { Box, Button, Input, Modal, TextField, Typography } from '@mui/material'
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  borderRadius:"10px",
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '0px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 
 export default function Home() {
   const [user] = useAuthState(auth)
   if(!user) return <Login />
+
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div >
@@ -29,8 +51,33 @@ export default function Home() {
 
 
       <Header />
-      <Start />
+      <Start openNew={handleOpen} />
       <Files />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Start a new document
+          </Typography>
+          <div className='mt-5 w-full'>
+            <TextField label="Enter file name" className='w-full' color="primary" placeholder='File name' />
+          </div>
+
+          <div className='flex items-end justify-end mt-5'>
+            <Button>
+              Create
+            </Button>
+
+            <Button color='error'>
+              Cancel
+            </Button>
+          </div>
+        </Box>
+      </Modal>
     </div>
   )
 }
