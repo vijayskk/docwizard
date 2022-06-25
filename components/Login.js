@@ -14,12 +14,20 @@ function Login() {
         objectFit='contain'
       />
       <h1 className='ml-2 text-gray-500 text-5xl mt-6'>DocWizard</h1>
-      <div className='mt-10'>
+      <div className='mt-10 flex flex-col items-center'>
       <button className='hover:bg-blue-700 bg-blue-600 w-40 h-10 text-white hover:shadow-lg rounded-xl'  onClick={()=>{
         auth.signInWithPopup(provider)
       }} >
         Login
       </button>
+
+      <button className='hover:bg-gray-700 bg-gray-600 w-40 h-10 text-white hover:shadow-lg rounded-xl mt-4'  onClick={()=>{
+        auth.signInAnonymously()
+      }} >
+        Use Anonymously
+      </button>
+
+
       </div>
     </div>
   )

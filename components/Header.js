@@ -6,7 +6,7 @@ import { auth } from '../firebase';
 
 function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [user] = useAuthState(auth)
+    var [user] = useAuthState(auth)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -14,7 +14,12 @@ function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+    const trueuser = user
+    if(user){
+        if(user.isAnonymous){
+            user = false
+        }
+    }
 
     return (
         <header className='flex sticky shadow-md h-16 md:h-20 items-center '>
@@ -31,7 +36,8 @@ function Header() {
                 <Apps />
             </IconButton>
             
-            {user?<img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src={user.photoURL} />:<img className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=" />}
+            {user?<img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src={user.photoURL} />
+            :<img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=" />}
             
             <Menu
                 id="basic-menu"
@@ -45,7 +51,9 @@ function Header() {
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={()=>{
-                    auth.signOut()
+                    if(trueuser){
+                        auth.signOut()
+                    }
                 }}>Logout</MenuItem>
             </Menu>
         </header>
