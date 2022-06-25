@@ -3,8 +3,13 @@ import Image from 'next/image'
 import Files from '../components/Files'
 import Header from '../components/Header'
 import Start from '../components/Start'
-import {db} from '../firebase'
+import {auth, db} from '../firebase'
+import Login from '../components/Login'
+import { useAuthState } from 'react-firebase-hooks/auth'
+
 export default function Home() {
+  const [user] = useAuthState(auth)
+  if(!user) return <Login />
 
   return (
     <div >

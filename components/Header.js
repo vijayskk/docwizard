@@ -1,9 +1,12 @@
 import { Apps, MenuSharp, NineK, Search } from '@mui/icons-material'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
 
 function Header() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [user] = useAuthState(auth)
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -28,7 +31,7 @@ function Header() {
                 <Apps />
             </IconButton>
             
-            <img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src='https://avatars.githubusercontent.com/u/83910193?v=4' />
+            {user?<img onClick={handleClick} className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src={user.photoURL} />:<img className='ml-2 w-10 rounded-full md:ml-8 mr-4 darkmode-ignore z-50' src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=" />}
             
             <Menu
                 id="basic-menu"
@@ -41,7 +44,9 @@ function Header() {
             >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={()=>{
+                    auth.signOut()
+                }}>Logout</MenuItem>
             </Menu>
         </header>
     )
