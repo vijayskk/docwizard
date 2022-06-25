@@ -21,11 +21,13 @@ function Login() {
         Login
       </button>
 
-      <button className='hover:bg-gray-700 bg-gray-600 w-40 h-10 text-white hover:shadow-lg rounded-xl mt-4'  onClick={()=>{
+      <button className='hover:bg-gray-700 bg-gray-600 w-40 h-10 text-white hover:shadow-lg rounded-xl mt-6'  onClick={()=>{
         auth.signInAnonymously()
       }} >
         Use Anonymously
       </button>
+
+      <p className='text-sm font-light text-red-600 mt-10'>Warning : Anonymous login wont save your files</p>
 
 
       </div>
